@@ -1,7 +1,7 @@
 
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask
+from flask import Flask, render_trmplate, request,
 from collections import Counter
 import json
 
@@ -15,3 +15,16 @@ def hello_world():
     return result
 
 
+@app.get("/count/")
+def count():
+    result render_template('count')
+
+@app.post("/result/")
+def result():
+    user_input = request.form['userinput']
+    word_dict = dict(Count(user_input.split()))
+    result =json.dumps(word_dict)
+    return Response(result,
+                    mimetype='application/json',
+                    headers={
+    'Content-disposition': 'attachment;filename=count,josn'})
